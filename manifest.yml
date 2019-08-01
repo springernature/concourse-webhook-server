@@ -1,0 +1,8 @@
+applications:
+- name: concourse-webhook-server
+  memory: 100M
+  instances: 1
+  buildpack: https://github.com/cloudfoundry/binary-buildpack.git#v1.0.26
+  routes:
+  - route: cws.public.springernature.app
+
