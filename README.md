@@ -1,6 +1,6 @@
 # Concourse Webhook Server
 
-<a href="https://concourse.halfpipe.io/teams/engineering-enablement/pipelines/concourse-webhook-server"><img src="http://badger.halfpipe.io/engineering-enablement/concourse-webhook-server" title="badge"></a>
+<a href="https://concourse.halfpipe.io/teams/engineering-enablement/pipelines/concourse-webhook-server"><img src="http://badger.halfpipe.io/engineering-enablement/concourse-webhook-server" title="build status"></a>
 
 A service that receives webhook events to trigger pipelines.
 
