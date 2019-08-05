@@ -1,5 +1,6 @@
 team: engineering-enablement
 pipeline: concourse-webhook-server
+slack_channel: "#halfpipe-alerts"
 
 feature_toggles:
 - update-pipeline
