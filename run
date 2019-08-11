@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-docker-compose run --service-ports app go run webserver.go
+if [[ "${1:-}" == "docker" ]]; then
+    docker-compose run --service-ports -v $HOME/.go.docker:/go app run.sh
+    exit
+fi
+
+
+go run cmd/webserver.go

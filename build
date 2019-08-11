@@ -1,8 +1,42 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "${1:-}" == "docker" ]]; then
+    docker-compose run -v $HOME/.go.docker:/go app ./build
+    exit
+fi
+
+
 [[ -d /var/halfpipe/shared-cache ]] && export GOPATH="/var/halfpipe/shared-cache"
 
-go build webserver.go
+go version | grep -q 'go1.12' || (
+    go version
+    echo error: go 1.12 required
+    exit 1
+)
 
-echo "Finished. built ./webserver"
+go_opts=""
+if [[ -d /var/halfpipe/shared-cache ]]; then
+    echo CI
+    go_opts="-mod=readonly"
+fi
+
+echo [1/4] fmt
+go fmt ./...
+
+echo [2/4] test
+go test $go_opts -cover ./...
+
+echo [3/4] build
+go build $go_opts cmd/webserver.go
+
+echo [4/4] lint
+if command -v golint > /dev/null; then
+    golint ./... |
+        grep -v 'should have comment or be unexported' \
+    || true
+else
+    echo "golint not installed. to install: GO111MODULE=off go get -u golang.org/x/lint/golint"
+fi
+
+echo Finished!

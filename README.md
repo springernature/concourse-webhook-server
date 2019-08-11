@@ -33,7 +33,9 @@ Trigger Events:  Just the push event
 
 #### Development
 
-`./build` and `./run`
+local `./build` and `./run` 
+
+or in docker `./build docker` and `./run docker`
 
 
 At the moment it just logs the events it receives to stdout:
