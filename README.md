@@ -4,7 +4,7 @@
 
 A service that receives webhook events to trigger pipelines.
 
-The idea is to use this service as an additional way of triggering resource checks instead of Concourse polling every minute. The polling puts a lot of load on Concourse - across the db, web nodes and workers. With this service resource checks will be faster and we can reduce the frequency of the polling.
+The idea is to use this service as an additional way of triggering resource checks instead of Concourse polling every minute. Polling this often puts a lot of load on Concourse - across the db, web nodes and workers. With this service resource checks will be faster and we can reduce the frequency of the polling.
 
 * pipeline jobs will be triggered immediately instead of waiting for the next timed check.
 * the default resource check interval can be increased (to e.g. 10m), reducing load in Concourse.
@@ -13,11 +13,11 @@ The idea is to use this service as an additional way of triggering resource chec
 
 ### How it works
 
-To start with it will support GitHub `push` events.
+At the moment it supports GitHub `push` events.
 
 When GitHub sends an event the service..
 * reads the repository and branch from the event
-* looks in Concourse for any git resources matching repo + branch
+* looks in Concourse for any active git resources matching repository and branch
 * triggers `check resource`
 
 #### GitHub webhook config
@@ -37,7 +37,4 @@ local `./build` and `./run`
 
 or in docker `./build docker` and `./run docker`
 
-
-At the moment it just logs the events it receives to stdout:
-
-`cf logs concourse-webhook-server --recent | grep push`
+At the moment it only actually checks resources in pipelines belonging to the `engineering-enablement` team. For all other resources it just logs the resources it found in Concourse.
