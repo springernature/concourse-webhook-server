@@ -8,7 +8,10 @@ feature_toggles:
 tasks:
 - type: docker-compose
   name: build
-  save_artifacts: [.]
+  save_artifacts:
+  - manifest.yml
+  - Procfile
+  - webserver
 
 - type: deploy-cf
   name: deploy
