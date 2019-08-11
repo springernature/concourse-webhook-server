@@ -19,14 +19,12 @@ func main() {
 	}
 
 	concourse := cws.Concourse{
-		DbHost:     os.Getenv("CONCOURSE_DB_HOST"),
-		DbUsername: os.Getenv("CONCOURSE_DB_USERNAME"),
-		DbPassword: os.Getenv("CONCOURSE_DB_PASSWORD"),
-	}
-
-	if concourse.DbHost == "" || concourse.DbUsername == "" || concourse.DbPassword == "" {
-		_, _ = fmt.Fprintln(os.Stderr, "concourse db environment variables not set")
-		return
+		Endpoint:   os.Getenv("CONCOURSE_ENDPOINT"),
+		Username:   os.Getenv("CONCOURSE_USERNAME"),
+		Password:   os.Getenv("CONCOURSE_PASSWORD"),
+		DBHost:     os.Getenv("CONCOURSE_DB_HOST"),
+		DBUsername: os.Getenv("CONCOURSE_DB_USERNAME"),
+		DBPassword: os.Getenv("CONCOURSE_DB_PASSWORD"),
 	}
 
 	gitHubEventProcessor := cws.Processor{

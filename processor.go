@@ -25,7 +25,7 @@ func (p Processor) Process(repo GitRepo) ([]Resource, []error) {
 	for _, resource := range resources {
 		err := p.CheckResource(resource)
 		if err != nil {
-			checkErrors = append(checkErrors, fmt.Errorf("error checking resourse: %+v  error: %s", resource, err))
+			checkErrors = append(checkErrors, fmt.Errorf("error checking resourse: %+v %s", resource, err))
 		} else {
 			checkedResources = append(checkedResources, resource)
 		}
