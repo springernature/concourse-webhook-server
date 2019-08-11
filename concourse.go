@@ -54,6 +54,13 @@ func (c Concourse) GetGitResources(repo GitRepo) ([]Resource, error) {
 }
 
 func (c Concourse) CheckResource(resource Resource) error {
+
+	// **** only continue for EE pipelines
+	if resource.Team != "engineering-enablement" {
+		return nil
+	}
+	// ****
+
 	token, err := c.token()
 	if err != nil {
 		return fmt.Errorf("error getting access token: %s", err)
