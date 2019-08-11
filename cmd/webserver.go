@@ -18,7 +18,16 @@ func main() {
 		return
 	}
 
-	concourse := cws.Concourse{}
+	concourse := cws.Concourse{
+		DbHost:     os.Getenv("CONCOURSE_DB_HOST"),
+		DbUsername: os.Getenv("CONCOURSE_DB_USERNAME"),
+		DbPassword: os.Getenv("CONCOURSE_DB_PASSWORD"),
+	}
+
+	if concourse.DbHost == "" || concourse.DbUsername == "" || concourse.DbPassword == "" {
+		_, _ = fmt.Fprintln(os.Stderr, "concourse db environment variables not set")
+		return
+	}
 
 	gitHubEventProcessor := cws.Processor{
 		GetResources:  concourse.GetGitResources,

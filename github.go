@@ -14,6 +14,10 @@ type GitRepo struct {
 	Branch string
 }
 
+func (r GitRepo) URI() string {
+	return fmt.Sprintf("git@github.com:%s", r.Name)
+}
+
 type GitHubWebHookParser = func(r *http.Request, events ...github.Event) (interface{}, error)
 
 type GitHub struct {
@@ -38,7 +42,7 @@ func (gh GitHub) Handler(process GitProcessor) http.HandlerFunc {
 
 		switch p := payload.(type) {
 		case github.PingPayload:
-			_, _ = fmt.Fprintf(w, string(p.HookID))
+			fmt.Fprintf(w, string(p.HookID))
 		case github.PushPayload:
 			repo, err := gh.branchFromPayload(p)
 			if err != nil {
@@ -47,9 +51,10 @@ func (gh GitHub) Handler(process GitProcessor) http.HandlerFunc {
 			}
 			checkedResources, errors := process(repo)
 
-			fmt.Printf("processed event for repo %+v\n", repo)
+			fmt.Fprintf(os.Stdout, "processed event for repo %+v\n", repo)
 			for _, resource := range checkedResources {
-				fmt.Printf("checked resource %+v\n", resource)
+				fmt.Fprintf(w, "%+v\n", resource)
+				fmt.Fprintf(os.Stdout, "checked resource %+v\n", resource)
 			}
 			for _, err := range errors {
 				fmt.Fprintln(os.Stderr, err)
@@ -76,5 +81,5 @@ func (gh GitHub) branchFromPayload(p github.PushPayload) (GitRepo, error) {
 
 func (gh GitHub) httpError(w http.ResponseWriter, err error) {
 	w.WriteHeader(500)
-	_, _ = fmt.Fprintln(w, err)
+	fmt.Fprintln(w, err)
 }
