@@ -7,3 +7,6 @@ applications:
   - https://github.com/cloudfoundry/binary-buildpack.git#v1.0.33
   routes:
   - route: cws.public.springernature.app
+  services:
+  - logger
+
