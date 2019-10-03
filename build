@@ -9,9 +9,9 @@ fi
 
 [[ -d /var/halfpipe/shared-cache ]] && export GOPATH="/var/halfpipe/shared-cache"
 
-go version | grep -q 'go1.12' || (
+go version | grep -q 'go1.13' || (
     go version
-    echo error: go 1.12 required
+    echo error: go 1.13 required
     exit 1
 )
 

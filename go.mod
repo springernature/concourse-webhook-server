@@ -8,3 +8,5 @@ require (
 	google.golang.org/appengine v1.6.1 // indirect
 	gopkg.in/go-playground/webhooks.v5 v5.12.0
 )
+
+go 1.13
