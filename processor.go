@@ -2,6 +2,7 @@ package cws
 
 import (
 	"fmt"
+	"time"
 )
 
 type GitProcessor = func(repo GitRepo) ([]Resource, []error)
@@ -21,13 +22,29 @@ func (p Processor) Process(repo GitRepo) ([]Resource, []error) {
 
 	var checkedResources []Resource
 	var checkErrors []error
+	type Result struct {
+		Res Resource
+		Err error
+	}
+
+	results := make(chan Result, len(resources))
 
 	for _, resource := range resources {
-		err := p.CheckResource(resource)
-		if err != nil {
-			checkErrors = append(checkErrors, fmt.Errorf("error checking resourse: %+v %s", resource, err))
-		} else {
-			checkedResources = append(checkedResources, resource)
+		go func(r Resource) {
+			results <- Result{Res: r, Err: p.CheckResource(r)}
+		}(resource)
+	}
+
+	for range resources {
+		select {
+		case result := <-results:
+			if result.Err != nil {
+				checkErrors = append(checkErrors, fmt.Errorf("error checking resourse: %+v %s", result.Res, result.Err))
+			} else {
+				checkedResources = append(checkedResources, result.Res)
+			}
+		case <-time.After(5 * time.Second):
+			//timeout
 		}
 	}
 

@@ -36,7 +36,9 @@ func Test_EventProcessorChecksAllResources(t *testing.T) {
 
 	assert.Empty(t, errs)
 	assert.Equal(t, repo, getResourcesRepo, "repo was not passed to resource getter")
-	assert.Equal(t, resources, checkedResources, "resources were not all passed to resource checker")
+	assert.Len(t, checkedResources, len(resources), "resources were not all passed to resource checker")
+	assert.Contains(t, checkedResources, resources[0])
+	assert.Contains(t, checkedResources, resources[1])
 }
 
 func Test_EventProcessorContinuesWhenACheckErrors(t *testing.T) {
