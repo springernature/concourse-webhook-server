@@ -21,8 +21,8 @@ tasks:
   vars:
     GITHUB_SECRET: ((concourse-webhook-server.github_secret))
     CONCOURSE_ENDPOINT: ((concourse.url))
-    CONCOURSE_USERNAME: ((concourse.username))
-    CONCOURSE_PASSWORD: ((concourse.password))
+    CONCOURSE_USERNAME: ((halfpipe-concourse-admin.username))
+    CONCOURSE_PASSWORD: ((halfpipe-concourse-admin.password))
     CONCOURSE_DB_HOST: ((concourse-db.host))
     CONCOURSE_DB_USERNAME: ((concourse-db.username_read))
     CONCOURSE_DB_PASSWORD: ((concourse-db.password_read))
