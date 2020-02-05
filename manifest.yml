@@ -1,6 +1,6 @@
 applications:
 - name: concourse-webhook-server
-  memory: 200M
+  memory: 50M
   instances: 2
   stack: cflinuxfs3
   buildpacks:
