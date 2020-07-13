@@ -2,6 +2,10 @@ team: engineering-enablement
 pipeline: concourse-webhook-server
 slack_channel: "#halfpipe-alerts"
 
+triggers:
+- type: timer
+  cron: "0 5 * * *"
+
 feature_toggles:
 - update-pipeline
 
