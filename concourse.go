@@ -89,7 +89,7 @@ func (c Concourse) token() (string, error) {
 	oauth2Config := oauth2.Config{
 		ClientID:     "fly",
 		ClientSecret: "Zmx5",
-		Endpoint:     oauth2.Endpoint{TokenURL: c.Endpoint + "/sky/token"},
+		Endpoint:     oauth2.Endpoint{TokenURL: c.Endpoint + "/sky/issuer/token"},
 		Scopes:       []string{"openid", "profile", "email", "federated:id", "groups"},
 	}
 
