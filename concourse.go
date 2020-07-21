@@ -2,6 +2,7 @@ package cws
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -99,6 +100,11 @@ func (c Concourse) token() (string, error) {
 		return "", err
 	}
 
-	c.accessToken = token.AccessToken
-	return c.accessToken, nil
+	idToken, ok := token.Extra("id_token").(string)
+	if !ok {
+		return "", errors.New("concourse oauth2 token is missing id_token")
+	}
+
+	c.accessToken = idToken
+	return idToken, nil
 }
