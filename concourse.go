@@ -43,7 +43,6 @@ func (c Concourse) GetGitResources(repo GitRepo) ([]Resource, error) {
 		INNER JOIN pipelines p ON p.id = r.pipeline_id
 		INNER JOIN teams t ON t.id = p.team_id
 		WHERE r.active = TRUE
-			AND r.paused = FALSE
 			AND p.paused = FALSE
 			AND config::json->>'type' = 'git'
 			AND config::json->'source'->>'uri' IN ($1, $2)
