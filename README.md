@@ -33,8 +33,13 @@ Trigger Events:  Just the push event
 
 #### Development
 
-local `./build` and `./run` 
+local `./build` and `./run`
 
 or in docker `./build docker` and `./run docker`
 
 At the moment it only actually checks resources in pipelines belonging to the `engineering-enablement` team. For all other resources it just logs the resources it found in Concourse.
+
+
+#### Logs
+
+<https://kibana.snpaas.eu/s/ee/app/kibana#/discover/2b5edfa0-cbf7-11ea-865f-a1aeec51368c>
