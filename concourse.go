@@ -100,7 +100,7 @@ func (c Concourse) token() (string, error) {
 		return "", err
 	}
 
-	idToken, ok := token.Extra("id_token").(string)
+	idToken, ok := token.Extra("access_token").(string)
 	if !ok {
 		return "", errors.New("concourse oauth2 token is missing id_token")
 	}
