@@ -8,6 +8,7 @@ triggers:
 
 feature_toggles:
 - update-pipeline
+- docker-decompose
 
 tasks:
 - type: docker-compose

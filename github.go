@@ -42,7 +42,7 @@ func (gh GitHub) Handler(process GitProcessor) http.HandlerFunc {
 
 		switch p := payload.(type) {
 		case github.PingPayload:
-			fmt.Fprintf(w, string(p.HookID))
+			fmt.Fprintf(w, "%v", p.HookID)
 		case github.PushPayload:
 			repo, err := gh.branchFromPayload(p)
 			if err != nil {
