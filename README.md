@@ -37,8 +37,6 @@ local `./build` and `./run`
 
 or in docker `./build docker` and `./run docker`
 
-At the moment it only actually checks resources in pipelines belonging to the `engineering-enablement` team. For all other resources it just logs the resources it found in Concourse.
-
 
 #### Logs
 
