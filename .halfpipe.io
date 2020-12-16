@@ -20,14 +20,14 @@ tasks:
 
 - type: deploy-cf
   name: deploy
-  api: ((cloudfoundry.api-snpaas))
+  api: ((snpaas.api))
   space: halfpipe
   deploy_artifact: .
   vars:
     GITHUB_SECRET: ((concourse-webhook-server.github_secret))
-    CONCOURSE_ENDPOINT: ((concourse.url))
-    CONCOURSE_USERNAME: ((halfpipe-concourse-admin.username))
-    CONCOURSE_PASSWORD: ((halfpipe-concourse-admin.password))
-    CONCOURSE_DB_HOST: ((concourse-db.host))
-    CONCOURSE_DB_USERNAME: ((concourse-db.username_read))
-    CONCOURSE_DB_PASSWORD: ((concourse-db.password_read))
+    CONCOURSE_ENDPOINT: ((concourse-admin.url))
+    CONCOURSE_USERNAME: ((concourse-admin.username))
+    CONCOURSE_PASSWORD: ((concourse-admin.password))
+    CONCOURSE_DB_HOST: ((halfipe-concourse-db.host))
+    CONCOURSE_DB_USERNAME: ((halfipe-concourse-db.username_read))
+    CONCOURSE_DB_PASSWORD: ((halfipe-concourse-db.password_read))
