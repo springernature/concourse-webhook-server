@@ -9,4 +9,3 @@ applications:
   - route: cws.public.springernature.app
   services:
   - logger
-

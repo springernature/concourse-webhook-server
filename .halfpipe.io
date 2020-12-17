@@ -20,7 +20,7 @@ tasks:
 
 - type: deploy-cf
   name: deploy
-  api: ((snpaas.api))
+  api: ((cloudfoundry.api-snpaas))
   space: halfpipe
   deploy_artifact: .
   vars:
