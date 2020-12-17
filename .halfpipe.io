@@ -25,9 +25,9 @@ tasks:
   deploy_artifact: .
   vars:
     GITHUB_SECRET: ((concourse-webhook-server.github_secret))
-    CONCOURSE_ENDPOINT: ((concourse-admin.url))
-    CONCOURSE_USERNAME: ((concourse-admin.username))
-    CONCOURSE_PASSWORD: ((concourse-admin.password))
-    CONCOURSE_DB_HOST: ((halfipe-concourse-db.host))
-    CONCOURSE_DB_USERNAME: ((halfipe-concourse-db.username_read))
-    CONCOURSE_DB_PASSWORD: ((halfipe-concourse-db.password_read))
+    CONCOURSE_ENDPOINT: ((concourse-admin-prod.url))
+    CONCOURSE_USERNAME: ((concourse-admin-prod.username))
+    CONCOURSE_PASSWORD: ((concourse-admin-prod.password))
+    CONCOURSE_DB_HOST: ((halfpipe-concourse-db-prod.host))
+    CONCOURSE_DB_USERNAME: ((halfpipe-concourse-db-prod.username_read))
+    CONCOURSE_DB_PASSWORD: ((halfpipe-concourse-db-prod.password_read))
